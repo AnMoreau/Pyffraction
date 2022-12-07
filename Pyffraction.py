@@ -2,7 +2,7 @@ import numpy as np
 import scipy.special as sp
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+from matplotlib.colors import ListedColormap
 
 
 def circular_holes(radii,NoH,D = 0.1,resolution = 1000):
@@ -20,7 +20,6 @@ def circular_holes(radii,NoH,D = 0.1,resolution = 1000):
     B = np.zeros((resolution,resolution))
 
     for m in range(len(radii)):
-        print(m)
         R = radii[m]
         N = NoH[m]
         phi = np.pi * 2 * np.arange(N)/N
@@ -40,11 +39,12 @@ def circular_holes(radii,NoH,D = 0.1,resolution = 1000):
 fig_diff = circular_holes([1,2],[12,6])
 # Green color map
 nmax = 256
-vals = np.ones((nmax, 4))
-vals[:, 0] = np.linspace(0, 0, nmax)
-vals[:, 1] = np.linspace(0, 1, nmax)
-vals[:, 2] = np.linspace(0, 0, nmax)
-newcmp = ListedColormap(vals)
+values = np.ones((nmax, 4))
+values[:, 0] = np.linspace(0, 0, nmax)
+values[:, 1] = np.linspace(0, 1, nmax)
+values[:, 2] = np.linspace(0, 0, nmax)
+newcmp = ListedColormap(values)
 
-plt.imshow(fig_diff,cmap = "hot")
+#plt.imshow(fig_diff,cmap = newcmp)
+plt.imsave('PyDiffigure.png',fig_diff,cmap = "cool")
 plt.show()
